@@ -9,6 +9,7 @@ ResultView.messages ={
 }
 ResultView.setUp = function (el) {
     this.init(el)
+    return this
 }
 
 // 서버에서 받은 데이터를 받아 동적으로 dom을 그려주는 메소드
