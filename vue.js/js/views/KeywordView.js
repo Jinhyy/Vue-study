@@ -18,6 +18,7 @@ KeywordView.render = function(data = []){
     this.el.innerHTML = data.length ? this.getKeywordsHtml(data) : this.messages.NO_RESULT
     this.bindClick()
     this.show()
+    return this
 },
 
 KeywordView.bindClick = function(){
