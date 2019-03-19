@@ -16,9 +16,19 @@
     <div class="container">
       <form v-on:submit.prevent="onSubmit"> <!-- prevent로 화면갱신 막으며(preventDefault 역할), submit시 onSubmit 메소드 호출하게 연결 -->
         <input type="text" v-on:keyup="onKeyup" v-model="query" placeholder="검색어를 입력하세요." autofocus>  <!-- v-model로 vue 인스턴스의 query 데이터와 바인딩 -->
-        <button v-on:click="onReset" v-show="query.length" type="reset" class="btn-reset"></button>
+        <button v-on:click="onResetClicked" v-show="query.length" type="reset" class="btn-reset"></button>
       </form>
+
+      <div v-show="submitted" v-if="searchResult.length">
+        <ul>
+          <li v-for="item in searchResult">
+            <img v-bind:src="item.image"><p>{{item.name}}</p>
+          </li>
+        </ul>
+      </div>
+      <div v-show="submitted" v-else>{{query}} : 해당 검색어에 관하여 데이터를 찾을 수 없습니다.</div>
     </div>
+
   </div>
   <script type="module" src="./js/app.js"></script>
   <script src=https://unpkg.com/vue></script>
