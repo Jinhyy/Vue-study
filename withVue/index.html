@@ -38,11 +38,31 @@
         </ul>
       </div>
 
-      <div v-if="selectedTab===tabs[0]">
-        추천검색어 목록
-      </div>
-      <div v-else>
-        최근검색어 목록
+      <div v-show="submitted===false">
+          <div v-if="selectedTab===tabs[0]">
+              <div v-if="keywords.length">
+                <ul class="list">
+                  <li v-for="(item,index) in keywords" v-on:click="onClickKeyword(item.keyword)">
+                    <span class="number"> {{index+1}} </span>
+                    {{item.keyword}}
+                  </li>
+                </ul>
+              </div>
+            </div>
+      
+            <div v-else>
+              <div v-if="historys.length">
+                <ul class="list">
+                  <li v-for="(history, index) in historys" v-on:click="onClickHistory(history.keyword)">
+                    <span class="number"> {{index+1}} </span>
+                    {{history.keyword}}
+                    <span class="date"> {{history.date}} </span>
+                    <button class="btn-remove" v-on:click.stop="onClickRemoveHistory(history.keyword)"></button> <!-- click.stop 으로 이벤트 버블링(전파)을 막게한다.-->
+                  </li>
+                </ul>
+              </div>
+              <div v-else> 최근 검색 기록이 없습니다. </div>
+            </div>
       </div>
     </div>
   </div>
