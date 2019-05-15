@@ -1,5 +1,10 @@
 <template>
   <div id="app">
+     <List :items="listItems">
+        <div slot-scope="row">
+          {{row.item.text}}
+        </div>
+      </List>
     <mainComponent :myProp1="dataForProp1">
       <!-- 네임드 slot -->
       <h1 slot="header"> {{ header }} </h1>
@@ -19,6 +24,7 @@
 
 <script>
 import mainComponent from "./views/main/index.vue"
+import List from './views/main/List.vue'
 
 export default {
   name: 'app',
@@ -29,11 +35,17 @@ export default {
       dataForProp1: 'prop data1',
       myObject: { property1: 'property1', property2: 'property2' },
       slotObject: { slotProperty1: 'property1', slotProperty2: 'property2' },
-      items: 'this is items from Parent!'
+      items: 'this is items from Parent!',
+      listItems: [
+        {text: '최'},
+        {text: '진'}, 
+        {text: '현'}
+		 ]
     }
   },
   components: {
-    mainComponent
+    mainComponent,
+    List
   }
 }
 </script>

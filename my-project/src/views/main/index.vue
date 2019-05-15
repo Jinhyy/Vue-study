@@ -6,9 +6,11 @@
         <p> {{ myProp1 }} </p>
         <p v-if="property1">{{ property1 }}</p>
         <p v-if="property2">{{ property2 }}</p>
-        <template slot="slotExample" slot-scope="props">
-            <p :items="props.slotProperty1"> {{items}} </p>
-        </template>
+        <h4>-----------구분선----------</h4>
+        <slot v-for="item in items"
+          :item="item">
+      <!-- fallback content here -->
+        </slot> 
     </div>
 </template>
 
@@ -17,10 +19,12 @@ export default {
   name: 'mainComponent',
   data () {
     return {
-      msg: 'Welcome to Main Component!'
+      msg: 'Welcome to Main Component!',
+      todos: [ { todos1: 'todosPvalue1' }, { todos2: 'todosPvalue2' }, { isComplete: true } ],
+      todo: []
     }
   },
-  props: ['myProp1', 'property1', 'property2','items'],
+  props: ['myProp1', 'property1', 'property2']
 }
 </script>
 
